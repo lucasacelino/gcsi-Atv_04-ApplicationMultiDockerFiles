@@ -5,7 +5,11 @@ Esta ativdade tem como objetivo criar dois Dockerfiles:
 - Um para executar a aplicação backend com Flask
 - um para executar o banco de dados Postgres
 
-# 1ª etapa - criar uma rede docker para que tenha uma comunicação entre os contêineres:
+Utilizei a seguinte estrutura e arqivos nesta atividade:
+
+![estrutura-arquivos](/app/assets/estrufiles.png)
+
+# 1ª etapa - criar uma rede docker para habilitar a comunicação entre os contêineres:
 `docker network create flask-network`
 
 # 2ª etapa - criar o Dockerfile do SGBD Postgres:
@@ -70,10 +74,13 @@ Aplicação pronta para execução!
 
 Nesta aplicação, criei dois endopoints: `criarProduto()` e `listarProduts()`
 
-Testi os dois endpoints utilizando o Postman:
+Testei os dois endpoints utilizando o Postman:
 
-endpoint para criar produto:
-![endpoint01](/app/assets/atividade01.png))
+**Endpoint para criar produto**:
+![endpoint01](/app/assets/atividade01.png)
 
-endpoint para listar produto:
-![endpoint02](/app/assets/atv02.png))
+**Endpoint para listar produtos**:
+![endpoint02](/app/assets/atv02.png)
+
+Realizando a consulta no SGBD Postgres para verifficar se oo dados foram persistidos corretamente:
+![sgbd](/app/assets/bd.png)

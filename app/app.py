@@ -22,6 +22,7 @@ def index():
     except Exception as e:
         return f"Erro ao conectar: {e}"
     
+
 @app.route('/produtos', methods=['POST'])
 def criar_produto():
     dados = request.get_json()
@@ -36,7 +37,6 @@ def criar_produto():
         conn = conectar()
         cur = conn.cursor()
 
-        # Inserção
         cur.execute(
             "INSERT INTO produtos (restaurant, customer, order_value, payment_method, status, order_date) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
             (restaurant, customer, order_value, payment_method, status, order_date)
@@ -70,6 +70,7 @@ def listarProdutos():
         ])
     except Exception as e:
         return jsonify({"erro": str(e)}), 500
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
