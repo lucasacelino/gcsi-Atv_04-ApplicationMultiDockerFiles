@@ -5,7 +5,10 @@ Esta ativdade tem como objetivo criar dois Dockerfiles:
 - Um para executar a aplicação backend com Flask
 - um para executar o banco de dados Postgres
 
-## 1ª etapa - criar o Dockerfile do SGBD Postgres:
+# 1ª etapa - criar uma rede docker para que tenha uma comunicação entre os dados do contêiner:
+`docker network create flask-network`
+
+# 1ª etapa - criar o Dockerfile do SGBD Postgres:
 ```
 FROM postgres:16
 
@@ -27,6 +30,38 @@ docker run -d \
   -e POSTGRES_DB=pedidos \
   -e POSTGRES_USER=postgres \
   -e POSTGRES_PASSWORD=123 \
-  custom-postgres
+  db-postgres
+```
+Agora o contêiner do SGBD já está em execução!
+
+# 2ª etapa- criar o Dockerfile da aplicação backend Flask:
+```
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY app/ .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+EXPOSE 5000
+
+CMD ["python3", "app.py"]
+
 ```
 
+## Criar a imagem da aplicação:
+`docker build -t flaskapp -f Dockerfile.flaskapp .`
+
+## Criar o contêiner da aplicação:
+```
+docker run -p 5000:5000 \
+  --name flask-container \
+  --network flask-network \
+  -e DB_HOST=pg-container \
+  -e DB_PORT=5432 \
+  -e DB_NAME=pedidos \
+  -e DB_USER=postgres \
+  -e DB_PASSWORD=123 \
+  flaskapp
+```
