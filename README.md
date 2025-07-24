@@ -82,5 +82,5 @@ Testei os dois endpoints utilizando o Postman:
 **Endpoint para listar produtos**:
 ![endpoint02](/app/assets/atv02.png)
 
-Realizando a consulta no SGBD Postgres para verifficar se oo dados foram persistidos corretamente:
+Realizando a consulta no SGBD Postgres para verificar se os dados foram persistidos corretamente:
 ![sgbd](/app/assets/bd.png)
