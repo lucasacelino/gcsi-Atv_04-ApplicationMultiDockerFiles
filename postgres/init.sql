@@ -1,4 +1,3 @@
--- Criação de tabela exemplo
 CREATE TABLE IF NOT EXISTS produtos ( 
     id SERIAL PRIMARY KEY
     restaurant VARCHAR NOT NULL
@@ -8,4 +7,3 @@ CREATE TABLE IF NOT EXISTS produtos (
     status VARCHAR NOT NULL
     order_date VARCHAR NOT NULL
 );
-
