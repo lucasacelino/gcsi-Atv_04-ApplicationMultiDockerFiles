@@ -1,0 +1,28 @@
+services:
+  flaskapp-back:
+    build: 
+      context: .
+      dockerfile: Dockerfile.flaskapp
+    ports:
+      - "5000:5000"
+    depends_on:
+      - pg_db
+    environment:
+      - DB_HOST=pg_db
+      - DB_NAME=pedidos
+      - DB_USER=postgres
+      - DB_PASSWORD=123
+    # ports:  
+    #   - "5000:5000"
+  pg_db:
+    image: postgres:14
+    environment:
+      - POSTGRES_DB=pedidos
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:
