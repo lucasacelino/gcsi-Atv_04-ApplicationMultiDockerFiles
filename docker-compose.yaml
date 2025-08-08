@@ -16,6 +16,8 @@ services:
     #   - "5000:5000"
   pg_db:
     image: postgres:14
+    ports:
+      - 5434:5432
     environment:
       - POSTGRES_DB=pedidos
       - POSTGRES_USER=postgres

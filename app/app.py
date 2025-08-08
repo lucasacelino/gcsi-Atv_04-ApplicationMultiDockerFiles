@@ -38,7 +38,7 @@ def criar_produto():
         cur = conn.cursor()
 
         cur.execute(
-            "INSERT INTO produtos (restaurant, customer, order_value, payment_method, status, order_date) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
+            "INSERT INTO pedidos (restaurant, customer, order_value, payment_method, status, order_date) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
             (restaurant, customer, order_value, payment_method, status, order_date)
         )
 
@@ -59,7 +59,7 @@ def listarProdutos():
         conn = conectar()
         cur = conn.cursor()
 
-        cur.execute("SELECT id, restaurant, customer, order_value, payment_method, status, order_date FROM produtos")
+        cur.execute("SELECT id, restaurant, customer, order_value, payment_method, status, order_date FROM pedidos")
         produtos = cur.fetchall()
 
         cur.close()
